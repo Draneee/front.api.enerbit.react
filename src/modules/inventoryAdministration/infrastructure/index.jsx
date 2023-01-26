@@ -9,6 +9,7 @@ import { SkeletonData } from "../components/SkeletonData";
 import { Enerbitlogo2 } from "../shared/assets/images";
 import { useAdminInventor } from "../shared/useAdminInventor";
 import Modals from "../components/Modal";
+import FormItem from "../components/FormItem";
 
 const InventoryAdministration = () => {
   const {
@@ -60,7 +61,13 @@ const InventoryAdministration = () => {
               closeModal={closeModal}
             >
               <div className="sub__container__modal">
-                <div className="container__items__serial">ae</div>
+                <div className="container__items__serial">
+                  <FormItem />
+                </div>
+                <div className="container__btn">
+                  <button className="btn__functions save">Guardar</button>
+                  <button className="btn__functions delete">Cancelar</button>
+                </div>
               </div>
             </Modals>
           </div>
