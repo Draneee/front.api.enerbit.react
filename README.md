@@ -1,6 +1,6 @@
 # Prueba Técnica Enerbit Front
 
-Este proyecto es una prueba técnica para Enerbit. Se trata de una aplicación web desarrollada con React.
+Este proyecto es una prueba técnica para Enerbit. Se trata de una aplicación web desarrollada con React. Utiliza la extensión Live Sass Compiler para compilar el Sass en tiempo real.
 
 ## Instalación
 
