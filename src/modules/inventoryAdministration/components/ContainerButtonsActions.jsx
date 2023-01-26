@@ -1,0 +1,50 @@
+import React, { useState } from "react";
+import { useAdminInventor } from "../shared/useAdminInventor";
+
+export const ContainerButtonsActions = ({
+  state,
+  onClickDeleteItem,
+  viewOnClick,
+  editOnClick,
+  deleteOnClick,
+  showModal,
+  isDeleting,
+}) => {
+  return (
+    <div className="container__btn">
+      {state === "Delete" ? (
+        <>
+          <button className="btn yes" onClick={onClickDeleteItem}>
+            {isDeleting ? "Eliminando..." : "Si"}
+          </button>
+          <button className="btn no">No</button>
+        </>
+      ) : (
+        <>
+          {showModal ? (
+            <>
+              <button onClick={editOnClick} className="btn__functions save">
+                Guardar
+              </button>
+              <button className="btn__functions delete" onClick={viewOnClick}>
+                Cancelar
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={editOnClick}
+                className="btn__functions editOnClick"
+              >
+                Editar
+              </button>
+              <button onClick={deleteOnClick} className="btn__functions delete">
+                Eliminar
+              </button>
+            </>
+          )}
+        </>
+      )}
+    </div>
+  );
+};

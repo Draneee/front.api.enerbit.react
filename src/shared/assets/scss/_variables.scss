@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+:root {
+  font-family: "Poppins", "Poppins Medium", sans-serif;
+
+  color-scheme: light;
+  color: rgba(0, 0, 0, 0.8);
+  background-color: #ff7805;
+
+  --primary-color: #543581;
+  --hover-primary-color: #3f2a5f;
+  --gray-soft: #eeeef2;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  --primary-font: "Poppins Regular";
+  --secondary-font: "Poppins Medium";
+  --tertiary-font: "Poppins SemiBold";
+  --transition: all 400ms ease;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+button,
+input[type="submit"],
+input[type="reset"] {
+  font-family: "Poppins", "Poppins Medium", sans-serif;
+
+  background: none;
+  color: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+textarea,
+input,
+select {
+  font-family: "Poppins", "Poppins Medium", sans-serif;
+  outline: none;
+  border: none;
+  background-image: none;
+  box-shadow: none;
+}
+input:focus-visible {
+  outline: none;
+  border: specify yours;
+}
