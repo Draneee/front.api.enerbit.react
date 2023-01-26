@@ -14,7 +14,7 @@ export const useAdminInventor = () => {
   const [initialData, setInitialData] = useState([]);
   const [content, setContent] = useState("Preview");
   const [showModal, setShowModal] = useState(false);
-
+  const [dataPayload, setDataPayload] = useState({});
   const client = axios.create({
     baseURL: "https://ops.enerbit.dev/learning/api/v1/meters",
   });
@@ -91,27 +91,26 @@ export const useAdminInventor = () => {
   };
   const statusOnClick = () => {
     setShowModal(true);
-    console.log(content);
   };
   const viewOnClick = () => {
     setContent("Preview");
-    console.log(content);
   };
   const editOnClick = () => {
     setContent("Edit");
-    console.log(content);
   };
   const deleteOnClick = () => {
     setContent("Delete");
-    console.log(content);
   };
   const AddProductOnClick = () => {
     setContent("Add Product");
     setShowModal(true);
-    console.log(content);
   };
   const closeModal = () => {
     setShowModal(false);
+  };
+
+  const OnChangeNashe = (e) => {
+    setDataPayload({ ...dataPayload, [e.target.name]: e.target.value });
   };
 
   return {
@@ -126,6 +125,8 @@ export const useAdminInventor = () => {
     content,
     showModal,
     error,
+    dataPayload,
+    OnChangeNashe,
     statusOnClick,
     handleDelete,
     handleChangeItemsPerPage,

@@ -23,7 +23,7 @@ export const ContainerButtonsActions = ({
         <>
           {showModal ? (
             <>
-              <button onClick={editOnClick} className="btn__functions save">
+              <button type="submit" className="btn__functions save">
                 Guardar
               </button>
               <button className="btn__functions delete" onClick={viewOnClick}>

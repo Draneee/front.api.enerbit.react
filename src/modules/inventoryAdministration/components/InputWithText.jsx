@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 
-const InputWithText = (data) => {
-  const [value, setValue] = useState(data["data"]);
-  console.log(value);
+function InputField(props) {
+  const [value, setValue] = useState(props.data);
   return (
     <input
-      type="text"
+      type={props.typeInput}
       placeholder={value}
       value={value}
-      onChange={(e) => setValue(e.target.value)}
+      name={props.name}
+      onChange={(e) => {
+        setValue(e.target.value);
+        props.onChange(e);
+      }}
     />
   );
-};
+}
 
-export default InputWithText;
+export default InputField;

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useAdminInventor } from "../shared/useAdminInventor";
 import { AddProduct } from "./AddProduct";
 import { ContainerButtonsActions } from "./ContainerButtonsActions";
+import FormItem from "./FormItem";
 import InputWithText from "./InputWithText";
 import Modals from "./Modal";
 import { OnlyReadField } from "./OnlyReadField";
@@ -107,6 +108,8 @@ export const ItemList = ({ data }) => {
     showModal,
     content,
     isDeleting,
+    dataPayload,
+    OnChangeNashe,
     handleDelete,
     viewOnClick,
     editOnClick,
@@ -115,6 +118,7 @@ export const ItemList = ({ data }) => {
     closeModal,
   } = useAdminInventor();
 
+  console.log(dataPayload);
   return (
     <>
       {/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
@@ -160,20 +164,14 @@ export const ItemList = ({ data }) => {
           </div>
         )}
         {content === "Edit" && (
-          <div className="sub__container__modal">
+          <form
+            className="sub__container__modal"
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
             <div className="container__items__serial">
-              {item__object.map((item) => (
-                <div className="item__serial__label">
-                  {item.label}
-                  <div
-                    className={`item__data__serial ${
-                      content === "Edit" && "edit"
-                    }`}
-                  >
-                    {item.element}
-                  </div>
-                </div>
-              ))}
+              <FormItem onChange={OnChangeNashe} data={data} />
             </div>
             <ContainerButtonsActions
               viewOnClick={viewOnClick}
@@ -182,7 +180,7 @@ export const ItemList = ({ data }) => {
               state={content}
               showModal={showModal}
             />
-          </div>
+          </form>
         )}
         {content === "Delete" && (
           <div className="sub__container__modal delete">
