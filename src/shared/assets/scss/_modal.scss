@@ -35,6 +35,9 @@
   &.deleteModal {
     align-content: center;
   }
+  &.center {
+    align-content: center;
+  }
 }
 
 .sub__container__modal {
@@ -44,7 +47,7 @@
   justify-content: center;
   gap: 20px;
 
-  &.delete {
+  &.center {
     align-items: center;
     text-align: center;
     .text__alert {
@@ -167,4 +170,23 @@
   font-size: 24px;
   top: 17px;
   color: var(--primary-color);
+}
+.container__status__correct__delete {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  img {
+    height: 50px;
+  }
+  div {
+    span {
+      font-size: 33px;
+      font-weight: 600;
+      line-height: 25px;
+    }
+  }
 }

@@ -10,28 +10,34 @@ import { Enerbitlogo2 } from "../shared/assets/images";
 import { useAdminInventor } from "../shared/useAdminInventor";
 import Modals from "../components/Modal";
 import FormItem from "../components/FormItem";
+import FormAddProduct from "../components/FormAddProduct";
 
 const InventoryAdministration = () => {
   const {
     items,
     isLoading,
     itemsPerPage,
-    searchValue,
     totalPages,
     currentPage,
     searchTerm,
-    isDeleting,
     showModal,
     content,
+    dataPayload,
+    handleAddItem,
     closeModal,
-    handleDelete,
     handleChangeItemsPerPage,
     handleNextPage,
+    OnChangeNashe,
     handlePreviousPage,
     handleSearch,
     AddProductOnClick,
   } = useAdminInventor();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAddItem(dataPayload);
+  };
+  console.log(items);
   return (
     <div className="card__layout inventory__Administration">
       <div className="container__inventory__administration">
@@ -60,15 +66,22 @@ const InventoryAdministration = () => {
               showModal={showModal}
               closeModal={closeModal}
             >
-              <div className="sub__container__modal">
-                <div className="container__items__serial">
-                  <FormItem />
+              <form
+                className="sub__container__modal"
+                onSubmit={(e) => handleSubmit(e)}
+              >
+                <div className="sub__container__modal">
+                  <div className="container__items__serial">
+                    <FormAddProduct onChange={OnChangeNashe} />
+                  </div>
+                  <div className="container__btn">
+                    <button type="submit" className="btn__functions save">
+                      Guardar
+                    </button>
+                    <button className="btn__functions delete">Cancelar</button>
+                  </div>
                 </div>
-                <div className="container__btn">
-                  <button className="btn__functions save">Guardar</button>
-                  <button className="btn__functions delete">Cancelar</button>
-                </div>
-              </div>
+              </form>
             </Modals>
           </div>
         </div>

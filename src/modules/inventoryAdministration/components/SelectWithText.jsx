@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-const SelectWithText = ({ data, optionsSelect, onChange, name }) => {
-  const [value, setValue] = useState(data["data"]);
+const SelectWithText = ({ optionsSelect, onChange, name }) => {
   const [options, setOptions] = useState(optionsSelect);
   return (
     <select

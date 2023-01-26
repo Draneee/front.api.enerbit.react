@@ -15,7 +15,7 @@ export const ContainerButtonsActions = ({
       {state === "Delete" ? (
         <>
           <button className="btn yes" onClick={onClickDeleteItem}>
-            {isDeleting ? "Eliminando..." : "Si"}
+            Si
           </button>
           <button className="btn no">No</button>
         </>

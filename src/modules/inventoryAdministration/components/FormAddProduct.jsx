@@ -3,28 +3,22 @@ import InputWithText from "./InputWithText";
 import { OnlyReadField } from "./OnlyReadField";
 import SelectWithText from "./SelectWithText";
 
-const FormItem = ({ data, onChange }) => {
+const FormAddProduct = ({ onChange }) => {
   return (
     <>
       <div className="item__serial__label">
         Serial
         <div className="item__data__serial edit">
-          <InputWithText
-            typeInput={"text"}
-            data={data["serial"]}
-            onChange={onChange}
-            name="serial"
-          />
+          <InputWithText typeInput={"text"} onChange={onChange} name="serial" />
         </div>
       </div>
       <div className="item__serial__label">
         Tipo de conexion
         <div className="item__data__serial edit">
           <SelectWithText
-            data={data["connection_type"]}
             onChange={onChange}
             name="connection_type"
-            optionsSelect={["directa", "semi-directa", "indirecta"]}
+            optionsSelect={["", "directa", "semi-directa", "indirecta"]}
           />
         </div>
       </div>
@@ -33,8 +27,8 @@ const FormItem = ({ data, onChange }) => {
         <div className="item__data__serial edit">
           <SelectWithText
             onChange={onChange}
-            name="connection_type"
-            optionsSelect={["interno", "externo"]}
+            name="storage_system"
+            optionsSelect={["", "interno", "externo"]}
           />
         </div>
       </div>
@@ -42,8 +36,7 @@ const FormItem = ({ data, onChange }) => {
         Condicion
         <div className="item__data__serial edit">
           <SelectWithText
-            data={data["condition"]}
-            optionsSelect={["nuevo", "usado"]}
+            optionsSelect={["", "nuevo", "usado"]}
             onChange={onChange}
             name="condition"
           />
@@ -53,8 +46,7 @@ const FormItem = ({ data, onChange }) => {
         Owner
         <div className="item__data__serial edit">
           <SelectWithText
-            data={data["owner"]}
-            optionsSelect={["RF", "OR"]}
+            optionsSelect={["", "RF", "OR"]}
             onChange={onChange}
             name="owner"
           />
@@ -63,93 +55,65 @@ const FormItem = ({ data, onChange }) => {
       <div className="item__serial__label">
         Location
         <div className="item__data__serial edit">
-          <InputWithText
-            data={data["location"]}
-            onChange={onChange}
-            name="location"
-          />
+          <InputWithText onChange={onChange} name="location" />
         </div>
       </div>
       <div className="item__serial__label">
         Fabricante
         <div className="item__data__serial edit">
-          <InputWithText data={data["manufacturer"]} onChange={onChange} />
+          <InputWithText onChange={onChange} name="purchase" />
         </div>
       </div>
       <div className="item__serial__label">
         Fecha de Compra
         <div className="item__data__serial edit">
-          <InputWithText
-            data={data["purchase"]}
-            onChange={onChange}
-            name="purchase"
-          />
+          <InputWithText typeInput="date" onChange={onChange} name="purchase" />
         </div>
       </div>
       <div className="item__serial__label">
         i_max
         <div className="item__data__serial edit">
-          <InputWithText
-            typeInput="number"
-            data={data["i_max"]}
-            onChange={onChange}
-            name="i_max"
-          />
+          <InputWithText typeInput="number" onChange={onChange} name="i_max" />
         </div>
       </div>
       <div className="item__serial__label">
         i_b
         <div className="item__data__serial edit">
-          <InputWithText
-            typeInput="number"
-            data={data["i_b"]}
-            onChange={onChange}
-            name="i_b"
-          />
+          <InputWithText typeInput="number" onChange={onChange} name="i_b" />
         </div>
       </div>
       <div className="item__serial__label">
         i_n
         <div className="item__data__serial edit">
-          <InputWithText
-            typeInput="number"
-            data={data["i_n"]}
-            name="i_n"
-            onChange={onChange}
-          />
+          <InputWithText typeInput="number" name="i_n" onChange={onChange} />
         </div>
       </div>
       <div className="item__serial__label">
         Sellos
         <div className="item__data__serial edit">
-          <InputWithText
-            data={data["seals"]}
-            onChange={onChange}
-            typeInput="number"
-            name="seals"
-          />
+          <InputWithText onChange={onChange} typeInput="number" name="seals" />
         </div>
       </div>
       <div className="item__serial__label">
         ID
         <div className="item__data__serial edit">
-          <OnlyReadField data={data["id"]} />
+          <OnlyReadField />
         </div>
       </div>
       <div className="item__serial__label">
         Creado en
         <div className="item__data__serial edit">
-          <OnlyReadField data={data["created_at"]} />
+          <OnlyReadField />
         </div>
       </div>
       <div className="item__serial__label">
         Actualizado en
         <div className="item__data__serial edit">
-          <OnlyReadField data={data["updated_at"]} />
+          <OnlyReadField />
         </div>
       </div>
     </>
   );
 };
 
-export default FormItem;
+export default FormAddProduct;

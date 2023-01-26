@@ -11,6 +11,9 @@ export const useAdminInventor = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [isEdited, setIsEdited] = useState(false);
+
   const [initialData, setInitialData] = useState([]);
   const [content, setContent] = useState("Preview");
   const [showModal, setShowModal] = useState(false);
@@ -61,55 +64,55 @@ export const useAdminInventor = () => {
       throw error;
     } finally {
       setIsDeleting(false);
+      setIsDeleted(true);
     }
   };
 
   const handleEditMeter = async (id, item) => {
     const itemPut = {
-      connection_type: item.connection_type,
-      storage_system: item.storage_system,
-      condition: item.condition,
-      owner: item.owner,
-      serial: item.serial,
-      location: item.location,
-      purchase: item.purchase,
-      i_max: item.i_max,
-      i_b: item.i_b,
-      i_n: item.i_n,
-      manufacturer: item.manufacturer,
-      seals: item.seals,
+      connection_type: item?.connection_type,
+      storage_system: item?.storage_system,
+      condition: item?.condition,
+      owner: item?.owner,
+      serial: item?.serial,
+      location: item?.location,
+      purchase: item?.purchase,
+      i_max: item?.i_max,
+      i_b: item?.i_b,
+      i_n: item?.i_n,
+      manufacturer: item?.manufacturer,
+      seals: item?.seals,
     };
     try {
       await client.patch(`/${id}`, itemPut);
     } catch (error) {
       throw error;
     } finally {
+      setIsEdited(true);
     }
     setItems([...items, itemPut]);
   };
 
   const handleAddItem = async (item) => {
     const itemPost = {
-      connection_type: item.connection_type,
-      storage_system: item.storage_system,
-      condition: item.condition,
-      owner: item.owner,
-      serial: item.serial,
-      location: item.location,
-      purchase: item.purchase,
-      i_max: item.i_max,
-      i_b: item.i_b,
-      i_n: item.i_n,
-      manufacturer: item.manufacturer,
-      seals: item.seals,
+      connection_type: item?.connection_type,
+      storage_system: item?.storage_system,
+      condition: item?.condition,
+      owner: item?.owner,
+      serial: item?.serial,
+      location: item?.location,
+      purchase: item?.purchase,
+      i_max: item?.i_max,
+      i_b: item?.i_b,
+      i_n: item?.i_n,
+      manufacturer: item?.manufacturer,
+      seals: item?.seals,
     };
     await client.post(``, itemPost);
     try {
     } catch (error) {
       throw error;
     }
-
-    setItemPost([...itemPost, itemPost]);
   };
 
   function handleChangeItemsPerPage(newItemsPerPage) {
@@ -170,6 +173,8 @@ export const useAdminInventor = () => {
     showModal,
     error,
     dataPayload,
+    isDeleted,
+    isEdited,
     OnChangeNashe,
     statusOnClick,
     handleDelete,

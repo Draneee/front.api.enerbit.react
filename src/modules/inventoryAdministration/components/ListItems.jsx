@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAdminInventor } from "../shared/useAdminInventor";
 import { AddProduct } from "./AddProduct";
+import { CheckGoodStatus } from "./CheckGoodStatus";
 import { ContainerButtonsActions } from "./ContainerButtonsActions";
 import FormItem from "./FormItem";
 import InputWithText from "./InputWithText";
@@ -9,13 +10,15 @@ import { OnlyReadField } from "./OnlyReadField";
 import SelectWithText from "./SelectWithText";
 
 export const ItemList = ({ data }) => {
-  const item__object = [
+  const item__object__preview = [
     {
+      key: 1,
       label: "Serial",
       get: "serial",
       element: <InputWithText data={data["serial"]} />,
     },
     {
+      key: 2,
       label: "Tipo de conexion",
       get: "connection_type",
       element: (
@@ -26,6 +29,7 @@ export const ItemList = ({ data }) => {
       ),
     },
     {
+      key: 3,
       label: "storage_system",
       get: "storage_system",
       element: (
@@ -36,6 +40,7 @@ export const ItemList = ({ data }) => {
       ),
     },
     {
+      key: 4,
       label: "Condicion",
       get: "condition",
       element: (
@@ -46,6 +51,7 @@ export const ItemList = ({ data }) => {
       ),
     },
     {
+      key: 5,
       label: "Owner",
       get: "owner",
       element: (
@@ -53,51 +59,61 @@ export const ItemList = ({ data }) => {
       ),
     },
     {
+      key: 6,
       label: "Location",
       get: "location",
       element: <InputWithText data={data["location"]} />,
     },
     {
+      key: 7,
       label: "Fabricante",
       get: "manufacturer",
       element: <InputWithText data={data["manufacturer"]} />,
     },
     {
+      key: 8,
       label: "Fecha de Compra",
       get: "purchase",
       element: <InputWithText data={data["purchase"]} />,
     },
     {
+      key: 9,
       label: "i_max",
       get: "i_max",
       element: <InputWithText data={data["i_max"]} />,
     },
     {
+      key: 10,
       label: "i_b",
       get: "i_b",
       element: <InputWithText data={data["i_b"]} />,
     },
     {
+      key: 11,
       label: "i_n",
       get: "i_n",
       element: <InputWithText data={data["i_n"]} />,
     },
     {
+      key: 12,
       label: "Sellos",
       get: "seals",
       element: <InputWithText data={data["seals"]} />,
     },
     {
+      key: 13,
       label: "ID",
       get: "id",
       element: <InputWithText data={data["id"]} />,
     },
     {
+      key: 14,
       label: "Creado en",
       get: "created_at",
       element: <OnlyReadField data={data["created_at"]} />,
     },
     {
+      key: 15,
       label: "Actualizado en",
       get: "updated_at",
       element: <OnlyReadField data={data["updated_at"]} />,
@@ -109,6 +125,9 @@ export const ItemList = ({ data }) => {
     content,
     isDeleting,
     dataPayload,
+    isDeleted,
+    isEdited,
+    handleEditMeter,
     OnChangeNashe,
     handleDelete,
     viewOnClick,
@@ -118,7 +137,10 @@ export const ItemList = ({ data }) => {
     closeModal,
   } = useAdminInventor();
 
-  console.log(dataPayload);
+  const handleSubmit = (e, id) => {
+    e.preventDefault();
+    handleEditMeter(id, dataPayload);
+  };
   return (
     <>
       {/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
@@ -146,8 +168,8 @@ export const ItemList = ({ data }) => {
         {content === "Preview" && (
           <div className="sub__container__modal">
             <div className="container__items__serial">
-              {item__object.map((item) => (
-                <div className="item__serial__label">
+              {item__object__preview.map((item) => (
+                <div className="item__serial__label" key={item.key}>
                   {item.label}
                   <div className="item__data__serial view">
                     <span>
@@ -163,42 +185,52 @@ export const ItemList = ({ data }) => {
             />
           </div>
         )}
-        {content === "Edit" && (
-          <form
-            className="sub__container__modal"
-            onSubmit={(e) => {
-              e.preventDefault();
-            }}
-          >
-            <div className="container__items__serial">
-              <FormItem onChange={OnChangeNashe} data={data} />
-            </div>
-            <ContainerButtonsActions
-              viewOnClick={viewOnClick}
-              editOnClick={editOnClick}
-              deleteOnClick={deleteOnClick}
-              state={content}
-              showModal={showModal}
-            />
-          </form>
-        )}
-        {content === "Delete" && (
-          <div className="sub__container__modal delete">
-            <div className="text__alert">
-              Estas seguro que quieres eliminar <br />
-              <span>El Item {data.serial} </span>
-            </div>
-            <ContainerButtonsActions
-              view={viewOnClick}
-              editOnClick={editOnClick}
-              deleteOnClick={deleteOnClick}
-              state={content}
-              showModal={showModal}
-              onClickDeleteItem={() => handleDelete(data.serial)}
-              isDeleting={isDeleting}
-            />
-          </div>
-        )}
+        {content === "Edit" ? (
+          <>
+            {!isEdited ? (
+              <form
+                className={`sub__container__modal $`}
+                onSubmit={(e) => handleSubmit(e, data["id"])}
+              >
+                <div className="container__items__serial">
+                  <FormItem onChange={OnChangeNashe} data={data} />
+                </div>
+                <ContainerButtonsActions
+                  viewOnClick={viewOnClick}
+                  editOnClick={editOnClick}
+                  deleteOnClick={deleteOnClick}
+                  state={content}
+                  showModal={showModal}
+                />
+              </form>
+            ) : (
+              <CheckGoodStatus status="edit" serial={data.serial} />
+            )}
+          </>
+        ) : null}
+        {content === "Delete" ? (
+          <>
+            {!isDeleted ? (
+              <div className="sub__container__modal center">
+                <div className="text__alert">
+                  Estas seguro que quieres eliminar <br />
+                  <span>El Item {data.serial} </span>
+                </div>
+                <ContainerButtonsActions
+                  view={viewOnClick}
+                  editOnClick={editOnClick}
+                  deleteOnClick={deleteOnClick}
+                  state={content}
+                  showModal={showModal}
+                  onClickDeleteItem={() => handleDelete(data.id)}
+                  isDeleting={isDeleting}
+                />
+              </div>
+            ) : (
+              <CheckGoodStatus status="delete" serial={data.serial} />
+            )}
+          </>
+        ) : null}
       </Modals>
     </>
   );

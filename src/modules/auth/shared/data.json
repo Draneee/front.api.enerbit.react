@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "email": "adminenerbit@yopmail.com",
+    "password": "admin",
+    "role": "admin"
+  },
+  {
+    "id": 2,
+    "username": "adrian",
+    "email": "adrianavilaenerbit@yopmail.com",
+    "password": "avila",
+    "role": "user"
+  }
+]

@@ -23,7 +23,7 @@ const Modals = ({ showModal, closeModal, state, width, children, view }) => {
     >
       <div
         className={`modalContent ${animationState ? "animation2" : ""} ${
-          state === "Delete" ? "deleteModal" : null
+          state === "Delete" ? "deleteModal" : ""
         }`}
         style={width ? { width: width } : {}}
         ref={element}
@@ -53,35 +53,6 @@ const Modals = ({ showModal, closeModal, state, width, children, view }) => {
           </>
         ) : (
           <div>
-            <button className="btn clear return" onClick={view}>
-              <svg
-                width="25"
-                height="25"
-                viewBox="0 0 25 25"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_28_2)">
-                  <path
-                    d="M20 0H5C2.23858 0 0 2.23858 0 5V20C0 22.7614 2.23858 25 5 25H20C22.7614 25 25 22.7614 25 20V5C25 2.23858 22.7614 0 20 0Z"
-                    fill="#EAEAEA"
-                  />
-                  <path
-                    d="M8.20157 10.5295C8.54963 10.5295 8.8976 10.6773 9.17605 10.9727L15.9492 18.556C16.4365 19.147 16.4365 20.1074 15.8796 20.6245C15.3228 21.2156 14.4179 21.2156 13.9308 20.6245L7.22708 13.0413C7.37951 12.2967 7.87951 12.2967 7.87951 11.7967C8.15797 11.5013 7.8535 10.5295 8.20157 10.5295Z"
-                    fill="#8C8C8C"
-                  />
-                  <path
-                    d="M14.7179 4C15.0679 4 15.4178 4.1476 15.6977 4.4432C16.2577 5.0342 16.2577 5.9946 15.6977 6.5118L9.37964 13.2967C8.81974 13.8877 7.90984 13.8877 7.41984 13.2967C6.86004 12.7057 6.86004 11.7453 7.41984 11.2281L13.7381 4.4432C14.0181 4.1476 14.3679 4 14.7179 4Z"
-                    fill="#8C8C8C"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_28_2">
-                    <rect width="25" height="25" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </button>
             <button className="btn clear exit" onClick={close}>
               <svg
                 width="25"
