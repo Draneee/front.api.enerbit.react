@@ -32,6 +32,7 @@ export const useAdminInventor = () => {
         setInitialData(response.data.items);
         setTotalPages(response.data.pages);
       } catch (err) {
+        throw err;
         setError(err);
       } finally {
         setIsLoading(false);
@@ -57,14 +58,57 @@ export const useAdminInventor = () => {
     try {
       await client.delete(`/${id}`);
     } catch (error) {
+      throw error;
     } finally {
       setIsDeleting(false);
     }
   };
 
-  const addItem = async (item) => {
-    const itemPost = { title: "test", description: "test" };
+  const handleEditMeter = async (id, item) => {
+    const itemPut = {
+      connection_type: item.connection_type,
+      storage_system: item.storage_system,
+      condition: item.condition,
+      owner: item.owner,
+      serial: item.serial,
+      location: item.location,
+      purchase: item.purchase,
+      i_max: item.i_max,
+      i_b: item.i_b,
+      i_n: item.i_n,
+      manufacturer: item.manufacturer,
+      seals: item.seals,
+    };
+    try {
+      await client.patch(`/${id}`, itemPut);
+    } catch (error) {
+      throw error;
+    } finally {
+    }
+    setItems([...items, itemPut]);
+  };
+
+  const handleAddItem = async (item) => {
+    const itemPost = {
+      connection_type: item.connection_type,
+      storage_system: item.storage_system,
+      condition: item.condition,
+      owner: item.owner,
+      serial: item.serial,
+      location: item.location,
+      purchase: item.purchase,
+      i_max: item.i_max,
+      i_b: item.i_b,
+      i_n: item.i_n,
+      manufacturer: item.manufacturer,
+      seals: item.seals,
+    };
     await client.post(``, itemPost);
+    try {
+    } catch (error) {
+      throw error;
+    }
+
     setItemPost([...itemPost, itemPost]);
   };
 
@@ -132,6 +176,8 @@ export const useAdminInventor = () => {
     handleNextPage,
     handlePreviousPage,
     handleSearch,
+    handleAddItem,
+    handleEditMeter,
     viewOnClick,
     editOnClick,
     deleteOnClick,
