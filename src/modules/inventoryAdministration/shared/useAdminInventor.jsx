@@ -13,7 +13,7 @@ export const useAdminInventor = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   const [isEdited, setIsEdited] = useState(false);
-
+  const [isCreated, setIsCreated] = useState(false);
   const [initialData, setInitialData] = useState([]);
   const [content, setContent] = useState("Preview");
   const [showModal, setShowModal] = useState(false);
@@ -112,6 +112,8 @@ export const useAdminInventor = () => {
     try {
     } catch (error) {
       throw error;
+    } finally {
+      setIsCreated(true);
     }
   };
 
@@ -144,6 +146,7 @@ export const useAdminInventor = () => {
   };
   const editOnClick = () => {
     setContent("Edit");
+    setIsEdited(false);
   };
   const deleteOnClick = () => {
     setContent("Delete");
@@ -175,6 +178,7 @@ export const useAdminInventor = () => {
     dataPayload,
     isDeleted,
     isEdited,
+    isCreated,
     OnChangeNashe,
     statusOnClick,
     handleDelete,

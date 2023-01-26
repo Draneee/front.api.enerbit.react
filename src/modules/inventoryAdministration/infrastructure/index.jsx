@@ -1,16 +1,14 @@
-import axios from "axios";
-import { React, useEffect, useState } from "react";
+import { React } from "react";
 import { AddProduct } from "../components/AddProduct";
 import { ItemList } from "../components/ListItems";
-import ItemsPerPageSelector from "../components/ItemsPerPageSelector";
 import Pagination from "../components/Pagination";
 import Search from "../components/Search";
 import { SkeletonData } from "../components/SkeletonData";
 import { Enerbitlogo2 } from "../shared/assets/images";
 import { useAdminInventor } from "../shared/useAdminInventor";
 import Modals from "../components/Modal";
-import FormItem from "../components/FormItem";
 import FormAddProduct from "../components/FormAddProduct";
+import { CheckGoodStatus } from "../components/CheckGoodStatus";
 
 const InventoryAdministration = () => {
   const {
@@ -23,6 +21,7 @@ const InventoryAdministration = () => {
     showModal,
     content,
     dataPayload,
+    isCreated,
     handleAddItem,
     closeModal,
     handleChangeItemsPerPage,
@@ -37,7 +36,6 @@ const InventoryAdministration = () => {
     e.preventDefault();
     handleAddItem(dataPayload);
   };
-  console.log(items);
   return (
     <div className="card__layout inventory__Administration">
       <div className="container__inventory__administration">
@@ -66,22 +64,28 @@ const InventoryAdministration = () => {
               showModal={showModal}
               closeModal={closeModal}
             >
-              <form
-                className="sub__container__modal"
-                onSubmit={(e) => handleSubmit(e)}
-              >
-                <div className="sub__container__modal">
-                  <div className="container__items__serial">
-                    <FormAddProduct onChange={OnChangeNashe} />
+              {!isCreated ? (
+                <form
+                  className="sub__container__modal"
+                  onSubmit={(e) => handleSubmit(e)}
+                >
+                  <div className="sub__container__modal">
+                    <div className="container__items__serial">
+                      <FormAddProduct onChange={OnChangeNashe} />
+                    </div>
+                    <div className="container__btn">
+                      <button type="submit" className="btn__functions save">
+                        Guardar
+                      </button>
+                      <button className="btn__functions delete">
+                        Cancelar
+                      </button>
+                    </div>
                   </div>
-                  <div className="container__btn">
-                    <button type="submit" className="btn__functions save">
-                      Guardar
-                    </button>
-                    <button className="btn__functions delete">Cancelar</button>
-                  </div>
-                </div>
-              </form>
+                </form>
+              ) : (
+                <CheckGoodStatus serial={dataPayload.serial} status="create" />
+              )}
             </Modals>
           </div>
         </div>

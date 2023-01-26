@@ -11,6 +11,7 @@ export const CheckGoodStatus = ({ serial, status }) => {
         <span>El Item "{serial}"</span>
         {status === "edit" ? <div> Fue editado correctamente</div> : null}
         {status === "delete" ? <div> Fue eliminado correctamente</div> : null}
+        {status === "create" ? <div> Fue creado correctamente</div> : null}
       </div>
     </div>
   );

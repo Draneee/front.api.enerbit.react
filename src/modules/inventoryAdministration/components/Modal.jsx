@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-const Modals = ({ showModal, closeModal, state, width, children, view }) => {
+const Modals = ({ showModal, closeModal, state, width, children }) => {
   const [animationState, setAnimationState] = useState(false);
   useEffect(() => {
     if (showModal) setTimeout(() => setAnimationState(true), 0);

@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { useAdminInventor } from "../shared/useAdminInventor";
-import { AddProduct } from "./AddProduct";
 import { CheckGoodStatus } from "./CheckGoodStatus";
 import { ContainerButtonsActions } from "./ContainerButtonsActions";
 import FormItem from "./FormItem";

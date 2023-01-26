@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useAdminInventor } from "../shared/useAdminInventor";
+import React from "react";
 
 export const ContainerButtonsActions = ({
   state,
@@ -8,7 +7,6 @@ export const ContainerButtonsActions = ({
   editOnClick,
   deleteOnClick,
   showModal,
-  isDeleting,
 }) => {
   return (
     <div className="container__btn">
